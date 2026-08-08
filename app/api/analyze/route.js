@@ -5,7 +5,7 @@ import pharmacies from "@/lib/pharmacies.json";
 
 export const runtime = "nodejs";
 
-const MODEL = "gemini-3.6-flash";
+const MODEL = "gemini-2.0-flash";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 export async function POST(req) {

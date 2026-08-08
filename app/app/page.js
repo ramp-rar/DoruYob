@@ -74,7 +74,10 @@ export default function AppPage() {
   }
 
   function openCapture() {
-    if (photoPreview) return;
+    // Allow retake: clear previous photo state before opening again
+    setPhotoData(null);
+    setPhotoError(null);
+    setPhotoPreview(null);
     if (cameraSupported && navigator.mediaDevices?.getUserMedia) {
       setCameraOpen(true);
     } else {
@@ -231,8 +234,14 @@ export default function AppPage() {
                 >
                   <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFilePick} className="hidden" />
                   {photoPreview ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={photoPreview} alt="preview" className="max-h-48 rounded-lg object-contain" />
+                    <div className="flex flex-col items-center gap-1.5">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={photoPreview} alt="preview" className="max-h-40 rounded-lg object-contain" />
+                      <span className="text-xs text-muted flex items-center gap-1">
+                        <Icon name="refresh" className="text-[13px]" />
+                        {lang === "ru" ? "Нажмите, чтобы переснять" : lang === "tg" ? "Барои аз нав гирифтан зер кунед" : "Tap to retake"}
+                      </span>
+                    </div>
                   ) : (
                     <>
                       <div className="w-14 h-14 rounded-full bg-bg flex items-center justify-center text-brand">
@@ -287,7 +296,7 @@ export default function AppPage() {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={cameraOpen}
+            disabled={cameraOpen || (tab === "photo" && photoPreview !== null && photoData === null)}
             className="w-full mt-5 py-3.5 rounded-full bg-accent text-ink font-display font-bold text-base flex items-center justify-center gap-2 hover:bg-accent-dark transition-colors active:scale-95 disabled:opacity-50"
           >
             <Icon name="auto_awesome" className="text-[18px]" />
