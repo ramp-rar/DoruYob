@@ -5,8 +5,62 @@ import pharmacies from "@/lib/pharmacies.json";
 
 export const runtime = "nodejs";
 
-const MODEL = "gemini-3.6-flash";
-const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+// Fallback chain: if the first model is quota-limited (429) or not found (404),
+// the next one is tried automatically. All three are confirmed working with this key.
+const MODELS = [
+  "gemini-3.6-flash",
+  "gemini-3.5-flash",
+  "gemini-3.1-flash-lite",
+];
+
+const GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
+
+async function callGemini(apiKey, parts) {
+  const body = JSON.stringify({
+    contents: [{ role: "user", parts }],
+    generationConfig: {
+      responseMimeType: "application/json",
+      temperature: 0.3,
+    },
+  });
+
+  let lastStatus = 500;
+  let lastText = "";
+
+  for (const model of MODELS) {
+    const url = `${GEMINI_BASE}/${model}:generateContent`;
+    let res;
+    try {
+      res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
+        body,
+      });
+    } catch (err) {
+      console.error(`fetch failed for ${model}:`, err.message);
+      lastStatus = 503;
+      lastText = err.message;
+      continue;
+    }
+
+    if (res.status === 429 || res.status === 404) {
+      lastText = await res.text();
+      lastStatus = res.status;
+      console.warn(`${model} → ${res.status}, trying next model`);
+      continue;
+    }
+
+    // Any other status (200 success or other error) — stop here
+    return res;
+  }
+
+  // All models exhausted
+  console.error("All Gemini models exhausted. Last status:", lastStatus, lastText.slice(0, 200));
+  return { ok: false, status: lastStatus, text: async () => lastText };
+}
 
 export async function POST(req) {
   try {
@@ -44,20 +98,7 @@ export async function POST(req) {
       });
     }
 
-    const geminiRes = await fetch(GEMINI_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": process.env.GEMINI_API_KEY,
-      },
-      body: JSON.stringify({
-        contents: [{ role: "user", parts }],
-        generationConfig: {
-          responseMimeType: "application/json",
-          temperature: 0.3,
-        },
-      }),
-    });
+    const geminiRes = await callGemini(process.env.GEMINI_API_KEY, parts);
 
     if (!geminiRes.ok) {
       const errText = await geminiRes.text();

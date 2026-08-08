@@ -113,8 +113,16 @@ export default function AppPage() {
     setListening(true);
   }
 
-  function requestLocation() {
+  async function requestLocation() {
     if (!navigator.geolocation) return;
+    // Check permission state first — avoids the "blocked" console error when
+    // the user has previously denied or ignored the prompt several times.
+    try {
+      const perm = await navigator.permissions.query({ name: "geolocation" });
+      if (perm.state === "denied") return;
+    } catch {
+      // permissions API not supported — proceed and let geolocation handle it
+    }
     navigator.geolocation.getCurrentPosition(
       (pos) => setUserLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
       () => {},
