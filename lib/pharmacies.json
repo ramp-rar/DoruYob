@@ -5,7 +5,9 @@
     "address": "HQ5P+WR3, Dushanbe",
     "phone": "+992 10 008 3500",
     "hours": "24/7",
-    "schedule": { "open24h": true },
+    "schedule": {
+      "open24h": true
+    },
     "lat": 38.5597722,
     "lng": 68.7870384
   },
@@ -15,7 +17,9 @@
     "address": "Ismoil Somoni Avenue 4, Dushanbe",
     "phone": "+992 93 936 5005",
     "hours": "24/7",
-    "schedule": { "open24h": true },
+    "schedule": {
+      "open24h": true
+    },
     "lat": 38.5835427,
     "lng": 68.7845321
   },
@@ -25,7 +29,17 @@
     "address": "Pushkin Street 10, Dushanbe 734025",
     "phone": "+992 91 927 9090",
     "hours": "07:00–23:59 (Sun 09:00–23:59)",
-    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "23:59" }, "sunday": { "open": "09:00", "close": "23:59" } },
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "07:00",
+        "close": "23:59"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "23:59"
+      }
+    },
     "lat": 38.576105,
     "lng": 68.7912375
   },
@@ -35,7 +49,13 @@
     "address": "Sh. Khusseinzoda 30, Dushanbe 734000",
     "phone": "+992 18 177 7777",
     "hours": "09:00–23:00",
-    "schedule": { "open24h": false, "weekday": { "open": "09:00", "close": "23:00" } },
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "09:00",
+        "close": "23:00"
+      }
+    },
     "lat": 38.5708033,
     "lng": 68.7936033
   },
@@ -45,7 +65,17 @@
     "address": "Dehi Bolo 180, Dushanbe",
     "phone": "+992 44 630 9990",
     "hours": "08:00–23:30 (Sun 10:00–22:00)",
-    "schedule": { "open24h": false, "weekday": { "open": "08:00", "close": "23:30" }, "sunday": { "open": "10:00", "close": "22:00" } },
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "23:30"
+      },
+      "sunday": {
+        "open": "10:00",
+        "close": "22:00"
+      }
+    },
     "lat": 38.584606,
     "lng": 68.7603818
   },
@@ -55,7 +85,13 @@
     "address": "M41, Dushanbe",
     "phone": "+992 10 141 0707",
     "hours": "07:00–23:00",
-    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "23:00" } },
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "07:00",
+        "close": "23:00"
+      }
+    },
     "lat": 38.5629221,
     "lng": 68.8080923
   },
@@ -65,7 +101,9 @@
     "address": "Behzod street, office 62, Dushanbe 734002",
     "phone": "+992 98 888 9548",
     "hours": "24/7",
-    "schedule": { "open24h": true },
+    "schedule": {
+      "open24h": true
+    },
     "lat": 38.5711376,
     "lng": 68.7981024
   },
@@ -74,20 +112,40 @@
     "name": "Дорухона \"Ватан\"",
     "address": "Ayni Street 29/9, Dushanbe 734024",
     "phone": "+992 44 625 0077",
-    "hours": "07:00–01:00",
-    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "01:00" } },
-    "lat": 38.5635364,
-    "lng": 68.797243
+    "hours": "08:00–17:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "17:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "17:00"
+      }
+    },
+    "lat": 38.56316,
+    "lng": 68.797106
   },
   {
     "id": "dorukhona-nishon",
     "name": "Dorukhona Nishon",
     "address": "Valomatzoda St 7, Dushanbe",
     "phone": "+992 88 893 9898",
-    "hours": "24/7",
-    "schedule": { "open24h": true },
-    "lat": 38.5622986,
-    "lng": 68.7947008
+    "hours": "08:00–24:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "24:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "24:00"
+      }
+    },
+    "lat": 38.562146,
+    "lng": 68.794243
   },
   {
     "id": "santa-russ",
@@ -95,8 +153,306 @@
     "address": "Bekhzod Street 16, Dushanbe 734000",
     "phone": "+992 94 390 0900",
     "hours": "08:00–22:00 (Sun 09:00–21:00)",
-    "schedule": { "open24h": false, "weekday": { "open": "08:00", "close": "22:00" }, "sunday": { "open": "09:00", "close": "21:00" } },
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "22:00"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "21:00"
+      }
+    },
     "lat": 38.5712901,
     "lng": 68.7984218
+  },
+  {
+    "id": "dorukhona",
+    "name": "Дорухона",
+    "address": "",
+    "phone": null,
+    "hours": "09:00–23:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "09:00",
+        "close": "23:00"
+      },
+      "sunday": {
+        "open": "09:00",
+        "close": "23:00"
+      }
+    },
+    "lat": 38.561179,
+    "lng": 68.780535
+  },
+  {
+    "id": "merosi-sino-dorukhona",
+    "name": "Мероси сино, дорухона",
+    "address": "кӯчаи Абдулаҳад Қаҳҳоров, 1/29",
+    "phone": null,
+    "hours": "08:00–01:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "01:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "01:00"
+      }
+    },
+    "lat": 38.562415,
+    "lng": 68.776105
+  },
+  {
+    "id": "dorukhona-2",
+    "name": "Дорухона",
+    "address": "кӯчаи Абдулаҳад Қаҳҳоров, 33",
+    "phone": null,
+    "hours": "08:00–22:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "22:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "22:00"
+      }
+    },
+    "lat": 38.561921,
+    "lng": 68.775031
+  },
+  {
+    "id": "vita-dorukhona",
+    "name": "Вита+, дорухона",
+    "address": "кӯчаи Шевченко, 115",
+    "phone": null,
+    "hours": "08:00–23:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "23:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "23:00"
+      }
+    },
+    "lat": 38.563385,
+    "lng": 68.784956
+  },
+  {
+    "id": "dorukhona-3",
+    "name": "Дорухона",
+    "address": "кӯчаи Шевченко, 113",
+    "phone": null,
+    "hours": "07:00–24:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "07:00",
+        "close": "24:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "24:00"
+      }
+    },
+    "lat": 38.564183,
+    "lng": 68.784648
+  },
+  {
+    "id": "madadrason-dorukhona",
+    "name": "Мададрасон, дорухона",
+    "address": "кӯчаи Лермонтов, 17",
+    "phone": null,
+    "hours": "08:00–22:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "22:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "22:00"
+      }
+    },
+    "lat": 38.563728,
+    "lng": 68.774086
+  },
+  {
+    "id": "maryam-dorukhona",
+    "name": "Марям, дoрухона",
+    "address": "кӯчаи Ҳабибулло Назаров, 1/1",
+    "phone": null,
+    "hours": "08:00–23:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "23:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "23:00"
+      }
+    },
+    "lat": 38.565709,
+    "lng": 68.781807
+  },
+  {
+    "id": "santa-russ-dorukhona-35",
+    "name": "Санта Русс, дорухона №35",
+    "address": "кӯчаи Бухоро, 2",
+    "phone": null,
+    "hours": "08:00–23:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "23:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "23:00"
+      }
+    },
+    "lat": 38.566822,
+    "lng": 68.781003
+  },
+  {
+    "id": "romish-o-dorukhona",
+    "name": "Ромиш-О, дорухона",
+    "address": "",
+    "phone": null,
+    "hours": "07:00–19:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "07:00",
+        "close": "19:00"
+      },
+      "sunday": {
+        "open": "07:00",
+        "close": "19:00"
+      }
+    },
+    "lat": 38.557397,
+    "lng": 68.788845
+  },
+  {
+    "id": "vitamin-dorukhona",
+    "name": "Витамин, дорухона",
+    "address": "кӯчаи Шарифҷон Ҳусейнзода, 2/1",
+    "phone": null,
+    "hours": "08:00–23:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "23:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "23:00"
+      }
+    },
+    "lat": 38.566279,
+    "lng": 68.784945
+  },
+  {
+    "id": "sifat-farma-dorukhona",
+    "name": "Сифат Фарма, дорухона",
+    "address": "",
+    "phone": null,
+    "hours": "24/7",
+    "schedule": {
+      "open24h": true,
+      "weekday": null,
+      "sunday": null
+    },
+    "lat": 38.565883,
+    "lng": 68.785718
+  },
+  {
+    "id": "dorukhona-4",
+    "name": "Дорухона",
+    "address": "",
+    "phone": null,
+    "hours": "08:00–21:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "21:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "21:00"
+      }
+    },
+    "lat": 38.560924,
+    "lng": 68.790587
+  },
+  {
+    "id": "santa-russ-dorukhona",
+    "name": "Санта Русс, дорухона",
+    "address": "кӯчаи Садриддин Айнӣ, 7",
+    "phone": null,
+    "hours": "08:30–22:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:30",
+        "close": "22:00"
+      },
+      "sunday": {
+        "open": "08:30",
+        "close": "22:00"
+      }
+    },
+    "lat": 38.563153,
+    "lng": 68.790098
+  },
+  {
+    "id": "filiali-1-dorukhona",
+    "name": "Филиали №1, дорухона",
+    "address": "кӯчаи Шарифҷон Ҳусейнзода, 10/1",
+    "phone": null,
+    "hours": "24/7",
+    "schedule": {
+      "open24h": true,
+      "weekday": null,
+      "sunday": null
+    },
+    "lat": 38.567132,
+    "lng": 68.785893
+  },
+  {
+    "id": "filiali-97-dorukhona",
+    "name": "Филиали №97, дорухона",
+    "address": "кӯчаи Шевченко, 32/13",
+    "phone": null,
+    "hours": "08:00–24:00",
+    "schedule": {
+      "open24h": false,
+      "weekday": {
+        "open": "08:00",
+        "close": "24:00"
+      },
+      "sunday": {
+        "open": "08:00",
+        "close": "24:00"
+      }
+    },
+    "lat": 38.568214,
+    "lng": 68.784274
   }
 ]
