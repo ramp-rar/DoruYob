@@ -122,7 +122,7 @@ export default function AppPage() {
     requestLocation();
 
     try {
-      const payload = { type: tab, lang };
+      const payload = { type: tab === "photo" ? "image" : "text", lang };
       if (tab === "text") {
         payload.text = text.trim();
       } else {
