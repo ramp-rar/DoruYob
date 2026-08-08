@@ -73,16 +73,22 @@ export default function AppPage() {
     }
   }
 
-  function openCapture() {
-    // Allow retake: clear previous photo state before opening again
+  function resetPhoto() {
     setPhotoData(null);
     setPhotoError(null);
     setPhotoPreview(null);
-    if (cameraSupported && navigator.mediaDevices?.getUserMedia) {
-      setCameraOpen(true);
-    } else {
-      fileInputRef.current?.click();
-    }
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function openCamera() {
+    resetPhoto();
+    setCameraOpen(true);
+  }
+
+  function openGallery() {
+    resetPhoto();
+    // defer so input value reset is flushed before click
+    setTimeout(() => fileInputRef.current?.click(), 0);
   }
 
   function toggleVoice() {
@@ -180,6 +186,7 @@ export default function AppPage() {
     setPhotoError(null);
     setErrorCode(null);
     setCameraOpen(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
   }
 
   return (
@@ -223,48 +230,60 @@ export default function AppPage() {
                 onUnavailable={() => {
                   setCameraSupported(false);
                   setCameraOpen(false);
-                  fileInputRef.current?.click();
+                  // defer click so React re-renders the file input into the DOM first
+                  setTimeout(() => fileInputRef.current?.click(), 0);
                 }}
               />
             ) : (
               <>
-                <ScanFrame
-                  className="rounded-2xl border border-line bg-surface h-56 flex flex-col items-center justify-center gap-2 cursor-pointer"
-                  onClick={openCapture}
-                >
-                  <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFilePick} className="hidden" />
-                  {photoPreview ? (
-                    <div className="flex flex-col items-center gap-1.5">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={photoPreview} alt="preview" className="max-h-40 rounded-lg object-contain" />
-                      <span className="text-xs text-muted flex items-center gap-1">
-                        <Icon name="refresh" className="text-[13px]" />
-                        {lang === "ru" ? "Нажмите, чтобы переснять" : lang === "tg" ? "Барои аз нав гирифтан зер кунед" : "Tap to retake"}
-                      </span>
+                <input ref={fileInputRef} type="file" accept="image/*" onChange={handleFilePick} className="hidden" />
+
+                {/* Preview frame */}
+                {photoPreview ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={photoPreview}
+                    alt="preview"
+                    className="w-full h-56 rounded-2xl object-contain bg-surface border border-line"
+                  />
+                ) : (
+                  <ScanFrame
+                    className="rounded-2xl border border-line bg-surface h-56 flex flex-col items-center justify-center gap-2 cursor-pointer"
+                    onClick={openGallery}
+                  >
+                    <div className="w-14 h-14 rounded-full bg-bg flex items-center justify-center text-brand">
+                      <Icon name="add_a_photo" filled className="text-[26px]" />
                     </div>
-                  ) : (
-                    <>
-                      <div className="w-14 h-14 rounded-full bg-bg flex items-center justify-center text-brand">
-                        <Icon name="add_a_photo" filled className="text-[26px]" />
-                      </div>
-                      <h3 className="font-display font-bold text-ink">{t.uploadHint}</h3>
-                      <p className="text-sm text-muted">{t.uploadSub}</p>
-                    </>
-                  )}
-                </ScanFrame>
+                    <h3 className="font-display font-bold text-ink">{t.uploadHint}</h3>
+                    <p className="text-sm text-muted">{t.uploadSub}</p>
+                  </ScanFrame>
+                )}
+
                 {photoError && (
                   <p className="mt-2 text-sm text-danger text-center">{photoError}</p>
                 )}
-                {!photoPreview && (
+
+                {/* Action buttons — camera + gallery, always visible */}
+                <div className="mt-3 flex gap-3 justify-center">
+                  {cameraSupported && (
+                    <button
+                      type="button"
+                      onClick={openCamera}
+                      className="flex-1 py-2.5 rounded-full border border-brand text-brand text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
+                    >
+                      <Icon name="photo_camera" className="text-[16px]" />
+                      {t.useCamera}
+                    </button>
+                  )}
                   <button
                     type="button"
-                    onClick={() => fileInputRef.current?.click()}
-                    className="mt-2 text-sm text-brand font-medium flex items-center gap-1.5 mx-auto"
+                    onClick={openGallery}
+                    className="flex-1 py-2.5 rounded-full border border-brand text-brand text-sm font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
                   >
                     <Icon name="image" className="text-[16px]" />
                     {t.useGallery}
                   </button>
-                )}
+                </div>
               </>
             )
           ) : (
@@ -296,7 +315,7 @@ export default function AppPage() {
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={cameraOpen || (tab === "photo" && photoPreview !== null && photoData === null)}
+            disabled={cameraOpen || (tab === "photo" && !photoData)}
             className="w-full mt-5 py-3.5 rounded-full bg-accent text-ink font-display font-bold text-base flex items-center justify-center gap-2 hover:bg-accent-dark transition-colors active:scale-95 disabled:opacity-50"
           >
             <Icon name="auto_awesome" className="text-[18px]" />
