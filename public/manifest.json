@@ -1,0 +1,22 @@
+{
+  "name": "DoruYob — дору ва дорухона",
+  "short_name": "DoruYob",
+  "description": "Фото дору ё аломат — шарҳ ва дорухонаи наздик дар Душанбе",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F2F5F1",
+  "theme_color": "#1F6E52",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Экстренный вызов",
+      "short_name": "103",
+      "url": "/app?emergency=1",
+      "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

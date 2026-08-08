@@ -1,0 +1,102 @@
+[
+  {
+    "id": "apteka-dushanbe",
+    "name": "Apteka Dushanbe",
+    "address": "HQ5P+WR3, Dushanbe",
+    "phone": "+992 10 008 3500",
+    "hours": "24/7",
+    "schedule": { "open24h": true },
+    "lat": 38.5597722,
+    "lng": 68.7870384
+  },
+  {
+    "id": "central-pharmacy-1",
+    "name": "Central Pharmacy No. 1",
+    "address": "Ismoil Somoni Avenue 4, Dushanbe",
+    "phone": "+992 93 936 5005",
+    "hours": "24/7",
+    "schedule": { "open24h": true },
+    "lat": 38.5835427,
+    "lng": 68.7845321
+  },
+  {
+    "id": "pharmacy-5",
+    "name": "Pharmacy #5",
+    "address": "Pushkin Street 10, Dushanbe 734025",
+    "phone": "+992 91 927 9090",
+    "hours": "07:00–23:59 (Sun 09:00–23:59)",
+    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "23:59" }, "sunday": { "open": "09:00", "close": "23:59" } },
+    "lat": 38.576105,
+    "lng": 68.7912375
+  },
+  {
+    "id": "german-pharmacy",
+    "name": "German Pharmacy",
+    "address": "Sh. Khusseinzoda 30, Dushanbe 734000",
+    "phone": "+992 18 177 7777",
+    "hours": "09:00–23:00",
+    "schedule": { "open24h": false, "weekday": { "open": "09:00", "close": "23:00" } },
+    "lat": 38.5708033,
+    "lng": 68.7936033
+  },
+  {
+    "id": "salomat",
+    "name": "Salomat — интернет-аптека с доставкой",
+    "address": "Dehi Bolo 180, Dushanbe",
+    "phone": "+992 44 630 9990",
+    "hours": "08:00–23:30 (Sun 10:00–22:00)",
+    "schedule": { "open24h": false, "weekday": { "open": "08:00", "close": "23:30" }, "sunday": { "open": "10:00", "close": "22:00" } },
+    "lat": 38.584606,
+    "lng": 68.7603818
+  },
+  {
+    "id": "apteka-nishon",
+    "name": "Apteka Nishon",
+    "address": "M41, Dushanbe",
+    "phone": "+992 10 141 0707",
+    "hours": "07:00–23:00",
+    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "23:00" } },
+    "lat": 38.5629221,
+    "lng": 68.8080923
+  },
+  {
+    "id": "doru-tj",
+    "name": "doru.tj",
+    "address": "Behzod street, office 62, Dushanbe 734002",
+    "phone": "+992 98 888 9548",
+    "hours": "24/7",
+    "schedule": { "open24h": true },
+    "lat": 38.5711376,
+    "lng": 68.7981024
+  },
+  {
+    "id": "dorukhona-vatan",
+    "name": "Дорухона \"Ватан\"",
+    "address": "Ayni Street 29/9, Dushanbe 734024",
+    "phone": "+992 44 625 0077",
+    "hours": "07:00–01:00",
+    "schedule": { "open24h": false, "weekday": { "open": "07:00", "close": "01:00" } },
+    "lat": 38.5635364,
+    "lng": 68.797243
+  },
+  {
+    "id": "dorukhona-nishon",
+    "name": "Dorukhona Nishon",
+    "address": "Valomatzoda St 7, Dushanbe",
+    "phone": "+992 88 893 9898",
+    "hours": "24/7",
+    "schedule": { "open24h": true },
+    "lat": 38.5622986,
+    "lng": 68.7947008
+  },
+  {
+    "id": "santa-russ",
+    "name": "Santa Russ",
+    "address": "Bekhzod Street 16, Dushanbe 734000",
+    "phone": "+992 94 390 0900",
+    "hours": "08:00–22:00 (Sun 09:00–21:00)",
+    "schedule": { "open24h": false, "weekday": { "open": "08:00", "close": "22:00" }, "sunday": { "open": "09:00", "close": "21:00" } },
+    "lat": 38.5712901,
+    "lng": 68.7984218
+  }
+]
