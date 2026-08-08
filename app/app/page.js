@@ -27,7 +27,9 @@ export default function AppPage() {
   const [cameraSupported, setCameraSupported] = useState(true);
   const [listening, setListening] = useState(false);
   const [voiceSupported, setVoiceSupported] = useState(false);
+  const [photoError, setPhotoError] = useState(null);
   const [status, setStatus] = useState("idle");
+  const [errorCode, setErrorCode] = useState(null);
   const [result, setResult] = useState(null);
   const [pharmacies, setPharmacies] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
@@ -48,22 +50,26 @@ export default function AppPage() {
     const file = e.target.files?.[0];
     if (!file) return;
     setPhotoPreview(URL.createObjectURL(file));
+    setPhotoError(null);
     try {
       const { base64, mimeType } = await fileToCompressedBase64(file);
       setPhotoData({ base64, mimeType });
     } catch {
       setPhotoData(null);
+      setPhotoError(t.photoDecodeError);
     }
   }
 
   async function handleCameraCapture(blob) {
     setCameraOpen(false);
     setPhotoPreview(URL.createObjectURL(blob));
+    setPhotoError(null);
     try {
       const { base64, mimeType } = await blobToCompressedBase64(blob);
       setPhotoData({ base64, mimeType });
     } catch {
       setPhotoData(null);
+      setPhotoError(t.photoDecodeError);
     }
   }
 
@@ -112,6 +118,7 @@ export default function AppPage() {
     if (tab === "photo" && !photoData) return;
 
     setStatus("loading");
+    setErrorCode(null);
     requestLocation();
 
     try {
@@ -123,21 +130,41 @@ export default function AppPage() {
         payload.mimeType = photoData.mimeType;
       }
 
-      const res = await fetch("/api/analyze", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
+      let res;
+      try {
+        res = await fetch("/api/analyze", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch {
+        throw new Error("network_error");
+      }
 
-      if (!res.ok) throw new Error("request_failed");
+      if (!res.ok) {
+        let errorType = "unexpected";
+        try {
+          const errData = await res.json();
+          errorType = errData.error || "unexpected";
+        } catch {}
+        throw new Error(errorType);
+      }
+
       const data = await res.json();
-
       setResult(data.result);
       setPharmacies(data.pharmacies || []);
       setStatus("done");
-    } catch {
+    } catch (err) {
+      setErrorCode(err.message);
       setStatus("error");
     }
+  }
+
+  function getErrorBody() {
+    if (errorCode === "network_error") return t.errorNetworkBody;
+    if (errorCode === "server_misconfigured") return t.errorConfigBody;
+    if (errorCode === "gemini_error" || errorCode === "empty_response" || errorCode === "parse_error") return t.errorImageBody;
+    return t.errorBody;
   }
 
   function reset() {
@@ -147,6 +174,8 @@ export default function AppPage() {
     setText("");
     setPhotoData(null);
     setPhotoPreview(null);
+    setPhotoError(null);
+    setErrorCode(null);
     setCameraOpen(false);
   }
 
@@ -214,6 +243,9 @@ export default function AppPage() {
                     </>
                   )}
                 </ScanFrame>
+                {photoError && (
+                  <p className="mt-2 text-sm text-danger text-center">{photoError}</p>
+                )}
                 {!photoPreview && (
                   <button
                     type="button"
@@ -294,7 +326,7 @@ export default function AppPage() {
         <div className="px-5 mt-5 max-w-md mx-auto w-full">
           <div className="rounded-card bg-danger/10 border border-danger/30 p-4 text-center space-y-2">
             <p className="font-semibold text-danger">{t.errorTitle}</p>
-            <p className="text-sm text-ink">{t.errorBody}</p>
+            <p className="text-sm text-ink">{getErrorBody()}</p>
             <button type="button" onClick={reset} className="mt-2 px-5 py-2 rounded-full bg-brand text-white text-sm font-medium">
               {t.tryAgain}
             </button>
